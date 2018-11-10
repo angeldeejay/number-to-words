@@ -24,7 +24,7 @@ class Es extends Words
         42 => ['septillón', 'septillones'],
         48 => ['octallón', 'octallones'],
         54 => ['nonallón', 'nonallones'],
-        60 => ['decallón', 'decallones'],
+        60 => ['decallón', 'decallones']
     ];
 
     private static $digits = [
@@ -53,6 +53,7 @@ class Es extends Words
         'BYR' => [['rublo bielorruso', 'rublos bielorrusos'], ['kopek', 'kopeks']],
         'CAD' => [['dólar canadiense', 'dólares canadienses'], ['centavo']],
         'CHF' => [['swiss franc'], ['rapp']],
+        'COP' => [['peso'], ['centavo']],
         'CYP' => [['cypriot pound'], ['cent']],
         'CZK' => [['czech koruna'], ['halerz']],
         'CRC' => [['colón', 'colones'], ['centavo']],
@@ -94,9 +95,8 @@ class Es extends Words
     ];
 
     /**
-     * @param int $number
-     * @param int $power
-     *
+     * @param  int      $number
+     * @param  int      $power
      * @return string
      */
     protected function toWords($number, $power = 0)
@@ -141,7 +141,8 @@ class Es extends Words
         // cientos: doscientos, trescientos, etc...
         switch ($h) {
             case 1:
-                if (($d == 0) and ($t == 0)) { // is it's '100' use 'cien'
+                if (($d == 0) and ($t == 0)) {
+                    // is it's '100' use 'cien'
                     $ret .= $this->wordSeparator . 'cien';
                 } else {
                     $ret .= $this->wordSeparator . 'ciento';
@@ -287,10 +288,9 @@ class Es extends Words
     }
 
     /**
-     * @param int  $currency
-     * @param int  $decimal
-     * @param null $fraction
-     *
+     * @param  int      $currency
+     * @param  int      $decimal
+     * @param  null     $fraction
      * @return string
      */
     public function toCurrencyWords($currency, $decimal, $fraction = null)
